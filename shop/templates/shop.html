@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Shop Page
+{% endblock %}
+
+{%block content%}
+
+    <div class="row" style="margin-top:15px; margin-left:15px">
+
+        <div class="col-8">
+
+            <h2>Products available for purchase</h2>
+
+            <p>You can buy a product by clicking on the "Buy a product"</p>
+
+            <br>
+
+            <table class="table table-striped table-dark">
+
+                <thead>
+
+                    <tr>
+
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Article</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Options</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for product in products %}
+
+                        {% include 'auxiliary/additionally.html' %}
+
+                        {% include 'auxiliary/buy.html' %}
+
+                        <tr>
+
+                            <td> {{ product.id }} </td>
+                            <td> {{ product.name }} </td>
+                            <td> {{ product.article }} </td>
+                            <td> {{ product.price }}₽ </td>
+                            <td>
+
+                                <button class="btn btn-secondary" data-toggle="modal"
+                                        data-target="#Additionally-{{ product.id }}">Additionally
+                                </button>
+
+                                <button class="btn btn-primary" data-toggle="modal"
+                                        data-target="#ConfirmPurchase-{{ product.id }}">Buy Product
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="col-4">
+
+            <h2>Selected products</h2>
+
+            <p>You can return an product by clicking on it</p>
+
+            <br>
+
+            <div class="row">
+
+                {% for product in owned_products %}
+
+                    {% include 'auxiliary/sell.html' %}
+
+                    <div class="col-md-6">
+
+                        <div style="margin-bottom: 30px" class="card text-center">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">{{ product.name }}</h5>
+
+                                <button type="button" class="btn btn-outline-info"
+                                        style="margin-bottom: 10px"
+                                        data-toggle="modal" data-target="#ConfirmSell-{{ product.id }}">
+                                    Sell Product
+                                </button>
+
+                                <p class="card-text"><strong>Price: {{ product.price }}₽</strong></p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Registration Page
+{% endblock %}
+
+{% block content %}
+
+    <body class="text-center">
+
+        <div class="container">
+
+            <form method="POST">
+
+                {{ form.hidden_tag() }}  <!-- защита от атаки CSRF -->
+
+                <h3 class = "mt-3 mb-3 font-weight-normal">
+                    Registration Form
+                </h3>
+
+                </br>
+
+                {{ form.username.label() }}
+                <div data-toggle="tooltip" data-placement="bottom"
+                     title="Username must be between 3 and 25 characters">
+                    {{ form.username(class="form-control", placeholder="User Name") }}
+                </div>
+
+                {{ form.email.label() }}
+                <div data-toggle="tooltip" data-placement="bottom"
+                    title="Email consists of a unique name, @ and domain">
+                {{ form.email(class="form-control", placeholder="Email") }}
+                </div>
+
+                {{ form.password.label() }}
+                <div data-toggle="tooltip" data-placement="bottom"
+                    title="Password cannot be less than 8 characters">
+                {{ form.password(class="form-control", placeholder="Password") }}
+                </div>
+
+                {{ form.confirm_password.label() }}
+                <div data-toggle="tooltip" data-placement="bottom"
+                    title="Enter the same password as in the form above">
+                {{ form.confirm_password(class="form-control", placeholder="Confirm the password") }}
+                </div>
+
+                <br>
+
+                <div class="checkbox mb-3">
+
+                    <h6>Are you already registered?</h6>
+
+                    <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}">Login</a>
+
+                </div>
+
+                {{ form.btn_registration(class="btn btn-block btn-dark") }}
+
+            </form>
+
+        </div>
+
+    </body>
+
+{% endblock %}

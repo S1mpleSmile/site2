@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Change Profile
+{% endblock %}
+
+{% block content %}
+
+    <body class="text-center">
+
+        <div class="container">
+
+            <form method="POST">
+
+                {{ form.hidden_tag() }}  <!-- защита от атаки CSRF -->
+
+                <h1>Change Profile</h1>
+
+                <br>
+
+                {{ form.username.label() }}
+                <div data-toggle="tooltip" data-placement="bottom"
+                    title="Username must be between 3 and 25 characters">
+                {{ form.username(class="form-control", placeholder="User Name") }}
+                </div>
+
+                {{ form.email.label() }}
+                <div data-toggle="tooltip" data-placement="bottom"
+                    title="Email consists of a unique name, @ and domain">
+                {{ form.email(class="form-control", placeholder="Email") }}
+                </div>
+
+                <br>
+
+                {{ form.btn_change(class="btn btn-block btn-dark") }}
+
+            </form>
+
+        </div>
+
+    </body>
+
+{% endblock %}

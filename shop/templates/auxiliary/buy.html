@@ -1,0 +1,57 @@
+<div class="modal fade" id="ConfirmPurchase-{{ product.id }}">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="ModalLabel">
+                    {{ product.name }}
+                </h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                    <span aria-hidden="true">&times;</span>  <!-- Крестик -->
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form method="POST">
+
+                    {{ buy_form.hidden_tag() }}  <!-- защита от атаки CSRF -->
+
+                    <h4 class="text-center">
+                        Are you sure you want to buy {{ product.name }} for {{ product.price }}₽?
+                    </h4>
+
+                    <br>
+
+                    <h6 class="text-center">
+                        By pressing the button, you buy the product .
+                    </h6>
+
+                    <br>
+
+                    <input id="purchased_product" name="purchased_product" type="hidden" value="{{ product.name }}">
+
+                    {{ buy_form.btn_buy(class="btn btn-outline-primary btn-block") }}
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
